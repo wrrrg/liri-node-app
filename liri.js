@@ -1,11 +1,12 @@
-var request = require("request");
 var dotenv = require("dotenv").config();
+var request = require("request");
 var keys = require("./keys");
 var Spotify = require('node-spotify-api');
+var Twitter = require('twitter');
 var fs = require("fs");
 
-// var spotify = new Spotify(keys.spotify);
-// var client = new Twitter(keys.twitter);
+var spotify = new Spotify(keys.spotify);
+var client = new Twitter(keys.twitter);
 
 
 
@@ -37,6 +38,12 @@ function runLiri(command){
 function myTweets(){
   // call should look like "node liri.js my-tweets"
   //recall the last 20 tweets and when they were posted in the terminal
+
+  client.get('favorites/list', function(error, tweets, response) {
+    if (!error) {
+      console.log(tweets);
+    }
+  });
 }
 
 // function spotifyThis(){
@@ -45,27 +52,13 @@ function myTweets(){
 //   // if no song is provided, the default is 'The Sign' by Ace of Base
 //   var song = '';
 //
-//   if(!searchTerm){
-//     song = "The Sign";
-//   } else {
-//     song = searchTerm;
-//   };
-//
-//   var spotify = new Spotify({
-//     id: <your spotify client id>,
-//     secret: <your spotify client secret>
-//     });
-//
-//
-//
-//   spotify
-//       .search({ type: 'track', query: song})
-//       .then(function(response) {
-//         console.log(response);
-//       })
-//       .catch(function(err) {
-//         console.log(err);
-//       });
+  // if(!searchTerm){
+  //   song = "The Sign";
+  // } else {
+  //   song = searchTerm;
+  // };
+
+
 // }
 
 function movieThis(){

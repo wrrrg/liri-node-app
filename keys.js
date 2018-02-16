@@ -12,3 +12,14 @@ exports.spotify = {
   id: process.env.SPOTIFY_ID,
   secret: process.env.SPOTIFY_SECRET
 };
+
+// var Twitter = function(consumer_key, consumer_secret, access_token_key, access_token_secret) {
+//
+//   this.consumer_key = consumer_key;
+//   this.consumer_secret = consumer_secret;
+//   this.access_token_key = access_token_key;
+//   this.access_token_secret = access_token_secret;
+//
+// };
+//
+// module.exports = Twitter;
