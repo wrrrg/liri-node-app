@@ -39,34 +39,34 @@ function myTweets(){
   //recall the last 20 tweets and when they were posted in the terminal
 }
 
-function spotifyThis(){
-  //should take argument "node liri.js spotify-this-song 'song name'"
-  // should return artist(s), song name, preview link of the song from spotify, and the album the song is from
-  // if no song is provided, the default is 'The Sign' by Ace of Base
-  var song = '';
-
-  if(!searchTerm){
-    song = "The Sign";
-  } else {
-    song = searchTerm;
-  };
-
-  var spotify = new Spotify({
-    id: <your spotify client id>,
-    secret: <your spotify client secret>
-    });
-
-
-
-  spotify
-      .search({ type: 'track', query: song})
-      .then(function(response) {
-        console.log(response);
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
-}
+// function spotifyThis(){
+//   //should take argument "node liri.js spotify-this-song 'song name'"
+//   // should return artist(s), song name, preview link of the song from spotify, and the album the song is from
+//   // if no song is provided, the default is 'The Sign' by Ace of Base
+//   var song = '';
+//
+//   if(!searchTerm){
+//     song = "The Sign";
+//   } else {
+//     song = searchTerm;
+//   };
+//
+//   var spotify = new Spotify({
+//     id: <your spotify client id>,
+//     secret: <your spotify client secret>
+//     });
+//
+//
+//
+//   spotify
+//       .search({ type: 'track', query: song})
+//       .then(function(response) {
+//         console.log(response);
+//       })
+//       .catch(function(err) {
+//         console.log(err);
+//       });
+// }
 
 function movieThis(){
   //this will take "node liri.js movie-this <movie name>"
@@ -115,12 +115,21 @@ function simonSays(){
   // it will use the text from random.txt to call another liri command.
 
   // that means presently it should run spotify-this-song for i want it that way, but we can change it.
-  fs.readFile("radnom.txt", "utf8", function(error, data){
+  fs.readFile("random.txt", "utf8", function(error, data){
     if (error) {
       return console.log(error);
     }
 
-  })
+    console.log(data);
+
+    var dataArr = data.split(",");
+
+    command = dataArr[0];
+    searchTerm = dataArr[1];
+
+    runLiri(command);
+
+  });
 
 
 };
