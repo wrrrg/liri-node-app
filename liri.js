@@ -69,8 +69,17 @@ function movieThis(){
 
       // Parse the body of the site and recover just the imdbRating
       // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
+      console.log("Title: " + JSON.parse(body).Title);
       console.log("Release Year: " + JSON.parse(body).Year);
-    }
+      console.log("IMDB Rating: " + JSON.parse(body).Ratings[0]["Value"]);
+      console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1]["Value"]);
+      console.log("It was produced in: " + JSON.parse(body).Country);
+      console.log("The dialogue is in " + JSON.parse(body).Language);
+      console.log("==============================");
+      console.log("SPOILERS: The plot of the movie is: " + JSON.parse(body).Plot);
+      console.log("==============================");
+      console.log("The main cast is: " + JSON.parse(body).Actors);
+    };
   });
 
 };
