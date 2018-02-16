@@ -2,8 +2,8 @@ var request = require("request");
 var dotenv = require("dotenv").config();
 var keys = require("./keys");
 
-var spotify = new Spotify(keys.spotify);
-var client = new Twitter(keys.twitter);
+// var spotify = new Spotify(keys.spotify);
+// var client = new Twitter(keys.twitter);
 
 
 
@@ -17,7 +17,7 @@ var searchTerm = inputString[3];
 var commandsArray = ["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says"];
 
 function runLiri(command){
-  if(commandsArray.indexOf(command) > -1){
+  if(commandsArray.indexOf(command) < 0){
     console.log("Please use one of the four given commands!");
   }
 
@@ -81,4 +81,6 @@ function simonSays(){
   // it will use the text from random.txt to call another liri command.
 
   // that means presently it should run spotify-this-song for i want it that way, but we can change it.
-}
+};
+
+runLiri(command);
