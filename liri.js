@@ -1,6 +1,8 @@
 var request = require("request");
 var dotenv = require("dotenv").config();
 var keys = require("./keys");
+var Spotify = require('node-spotify-api');
+var fs = require("fs");
 
 // var spotify = new Spotify(keys.spotify);
 // var client = new Twitter(keys.twitter);
@@ -41,6 +43,29 @@ function spotifyThis(){
   //should take argument "node liri.js spotify-this-song 'song name'"
   // should return artist(s), song name, preview link of the song from spotify, and the album the song is from
   // if no song is provided, the default is 'The Sign' by Ace of Base
+  var song = '';
+
+  if(!searchTerm){
+    song = "The Sign";
+  } else {
+    song = searchTerm;
+  };
+
+  var spotify = new Spotify({
+    id: <your spotify client id>,
+    secret: <your spotify client secret>
+    });
+
+
+
+  spotify
+      .search({ type: 'track', query: song})
+      .then(function(response) {
+        console.log(response);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
 }
 
 function movieThis(){
@@ -90,6 +115,14 @@ function simonSays(){
   // it will use the text from random.txt to call another liri command.
 
   // that means presently it should run spotify-this-song for i want it that way, but we can change it.
+  fs.readFile("radnom.txt", "utf8", function(error, data){
+    if (error) {
+      return console.log(error);
+    }
+
+  })
+
+
 };
 
 runLiri(command);
