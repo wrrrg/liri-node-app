@@ -24,6 +24,11 @@ var spacer = "-----------------";
 function runLiri(command){
   if(commandsArray.indexOf(command) < 0){
     console.log("Please use one of the four given commands!");
+    fs.appendFile("log.txt", "NEW COMMAND" + "\r\n" + "User failed to enter a valid command, ", function(err) {
+      if (err) {
+        return console.log(err);
+      }
+    });
   };
 
   if(command === commandsArray[0]) {
@@ -43,12 +48,23 @@ function myTweets(){
 
   client.get('statuses/user_timeline', {count: 20}, function(error, tweets, response) {
     if (error){
+      fs.appendFile("log.txt", "NEW COMMAND" + "\r\n" + error, function(err) {
+        if (err) {
+          return console.log(err);
+        }
+      });
       console.log(error);
     };
     // If we don't get an error, loop through the tweets
     if (!error) {
       console.log(spacer)
       console.log("Your last 20 tweets: ");
+      fs.appendFile("log.txt", "NEW COMMAND" + "\r\n" + "Your last 20 tweets: " + "\r\n", function(err){
+        if (err) {
+          return console.log(err)
+        }
+      });
+
       for (var i = 0; i < 20; i++) {
         var name = tweets[i]["user"]["name"];
         var time = tweets[i]["created_at"];
@@ -57,6 +73,12 @@ function myTweets(){
         console.log(content);
         console.log("(" + name + ", " + time + ")");
         console.log(spacer);
+
+        fs.appendFile("log.txt", "(" + name + ": " + time + "): " + content + "\r\n", function(err) {
+          if (err) {
+            return console.log(err);
+          }
+        });
 
 
       };
@@ -86,22 +108,42 @@ function spotifyThis(){
 // This will give us all of our wanted data via rooting through the object returned to us (within objects, within arrays...spotify really buries the lead here.)
   //
 
+  var songResult = {
+    name: data.tracks["items"][0]["name"],
+    album: data.tracks["items"][0]["album"]["name"],
+    artist: data.tracks["items"][0]["album"]["artists"][0]["name"],
+    previewURL: data.tracks["items"][0]["preview_url"]
+  }
+
   console.log("****** Here are your spotify results! *****");
   console.log(spacer);
-  console.log("Name of the song: " + data.tracks["items"][0]["name"]);
+  console.log("Name of the song: " + songResult.name);
   console.log(spacer);
-  console.log("You can find this song on the album: " + data.tracks["items"][0]["album"]["name"]);
+  console.log("You can find this song on the album: " + songResult.album );
   console.log(spacer);
-  console.log("This song is by: " + data.tracks["items"][0]["album"]["artists"][0]["name"]);
+  console.log("This song is by: " + songResult.artist );
   console.log(spacer);
 
 
-  var preview = data.tracks["items"][0]["preview_url"];
+  var preview = songResult.previewURL;
+  var previewResult = '';
   if(!preview){
-    console.log("Unfortunately, there is no song preview available in your market.");
+    previewResult = "Unfortunately, there is no song preview in your market.";
   } else {
-    console.log("Here's a preview of the song: " + preview);
+    previewResult = "Here's a preview of the song: " + preview;
   };
+
+  console.log(previewResult);
+
+  fs.appendFile("log.txt", "NEW COMMAND" + "\r\n" + "Spotify Result: " + songResult.name + ", Arist: " + songResult.artist + ", Album: " + songResult.album + ", preview: " + previewResult + "\r\n", function(err) {
+    if (err) {
+      return console.log(err);
+    }
+  });
+
+
+
+
 
   // I can't seem to get a preview URL to load. They all return null - google says that it needs a market to offer a previewURL and I'm not sure how to add one using this api.
 
@@ -131,7 +173,7 @@ function movieThis(){
   var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
   // This line is just to help us debug against the actual URL.
-  console.log(queryUrl);
+  // console.log(queryUrl);
 
   request(queryUrl, function(error, response, body) {
 
@@ -173,11 +215,19 @@ function simonSays(){
     command = dataArr[0];
     searchTerm = dataArr[1];
 
+    fs.appendFile("log.txt", "USER CALLED SIMON SAYS (reading random.txt)", function(err) {
+      if (err) {
+        return console.log(err);
+      }
+    });
+
     runLiri(command);
 
   });
 
 
 };
+
+
 
 runLiri(command);

@@ -1,0 +1,33 @@
+Liri Log:
+NEW COMMAND
+Your last 20 tweets: 
+(Bill Gryta: Sat Feb 17 02:53:19 +0000 2018): Day late and a dollar short if you ask me, but good for them.
+(Bill Gryta: Sat Feb 17 02:52:50 +0000 2018): Because apparently I haven't made any tweets in a long time.
+(Bill Gryta: Sat Feb 17 02:53:07 +0000 2018): I tried making a fake twitter to test instead but apparently they're really cracking down on that now.
+(Bill Gryta: Wed Feb 17 07:03:43 +0000 2016): @fins0905 Do you have a website for inquiries from prospective students?
+(Bill Gryta: Fri Feb 16 06:09:20 +0000 2018): @fins0905 Good luck!
+(Bill Gryta: Sat Feb 17 02:52:39 +0000 2018): I need some tweets to test this node app.
+(Bill Gryta: Mon Jan 25 19:28:48 +0000 2016): @_sirmixalot like your dog or the Kardashian
+(Bill Gryta: Mon Jan 25 19:54:55 +0000 2016): @_sirmixalot like at the same time, can they Co star
+(Bill Gryta: Fri Nov 20 03:50:07 +0000 2015): RT @austenburkett: @BillGryta  https://t.co/3vODfTiiB2
+(Bill Gryta: Thu Nov 12 03:44:37 +0000 2015): I'm the official ATX distributor.  https://t.co/AH5GoYTH3l
+(Bill Gryta: Thu Nov 12 03:35:33 +0000 2015): @allyooo are you saying you have no chill ?
+(Bill Gryta: Thu Nov 12 04:36:26 +0000 2015): Checking out https://t.co/FKNVECXfbw from @followerwonk: Twitter bio search, user comparison, follower analysis, social graph tracking
+(Bill Gryta: Sat Nov 07 01:13:52 +0000 2015): RT @CAH: You were probably wondering what we're doing this weekend. We're seeing @quietcompanytx at Schubas, as should you. https://t.co/vY…
+(Bill Gryta: Thu Nov 12 03:19:06 +0000 2015): Hey y'all, be sure to come hang out in Brooklyn next sunday! QC is back at Knitting Factory.
+(Bill Gryta: Thu Nov 12 03:41:36 +0000 2015): @mattbizer hey man, we're going to be at Knitting Factory sunday, you should come hang!
+(Bill Gryta: Sat Nov 07 01:13:33 +0000 2015): RT @ArchiePowell: If y'all in Chicago and you don't catch @quietcompanytx at @Schubas tomorrow night, you're doing it wrong. 👉🏼🎟💥 https://t…
+(Bill Gryta: Fri Apr 24 17:45:20 +0000 2015): @csilver_11 Hey man, thanks for spinning us on the Ville. Would love to guest list you for the show in Philly next month, hit me up.
+(Bill Gryta: Wed Mar 04 18:17:17 +0000 2015): RT @nihilist_arbys: WHAT DO WE WANT?
+ARBYS!
+actually desires are a waste of a life that is, itself, pointless. 
+WHEN DO WE WANT IT?
+Time's …
+(Bill Gryta: Wed Mar 04 18:16:34 +0000 2015): @k1te @quietcompanytx this is amazing
+(Bill Gryta: Thu Feb 26 23:14:31 +0000 2015): RT @Simpsons_tweets: Myth: Cable piracy is wrong. Fact: Cable companies are big, faceless corporations, which makes it okay! http://t.co/md…
+NEW COMMAND
+Spotify Result: The Sign, Arist: Ace of Base, Album: The Sign (US Album) [Remastered], preview: Here's a preview of the song: https://p.scdn.co/mp3-preview/4c463359f67dd3546db7294d236dd0ae991882ff?cid=6e2212a9f4a14f6682e036106b883374
+USER CALLED SIMON SAYS (reading random.txt)NEW COMMAND
+Spotify Result: I Want It That Way, Arist: Backstreet Boys, Album: The Hits--Chapter One, preview: Here's a preview of the song: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=6e2212a9f4a14f6682e036106b883374
+NEW COMMAND
+Spotify Result: The Biblical Sense of the Word, Arist: Quiet Company, Album: Songs For Staying In, preview: Here's a preview of the song: https://p.scdn.co/mp3-preview/0b1e357280fb2c6dae84fa525e90f448f62e813c?cid=6e2212a9f4a14f6682e036106b883374
