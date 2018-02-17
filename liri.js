@@ -17,7 +17,7 @@ var inputString = process.argv
 var command = inputString[2];
 var searchTerm = inputString[3];
 
-var commandsArray = ["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says"];
+var commandsArray = ["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says", "reset-log", "read-log"];
 
 var spacer = "-----------------";
 
@@ -39,6 +39,10 @@ function runLiri(command){
     movieThis(searchTerm);
   } else if (command === commandsArray[3]){
     simonSays();
+  } else if (command === commandsArray[4]){
+    resetLog();
+  } else if (command === commandsArray[5]){
+    readLog();
   }
 };
 
@@ -161,7 +165,7 @@ function movieThis(){
   //this should return:
   // the movie title, the year it came out, the IMDB rating the rotten tomatoes rating, the country where it was produced, the movie's language, the plot, and the cast
   // if no movie is specified, the movie will be "Mr. Nobody"
-
+  var movieResult = {};
   var movieName = '';
   if(!searchTerm){
     movieName = "Mr+Nobody"
@@ -182,18 +186,38 @@ function movieThis(){
 
       // Parse the body of the site and recover just the imdbRating
       // (Note: The syntax below for parsing isn't obvious. Just spend a few moments dissecting it).
-      console.log("Title: " + JSON.parse(body).Title);
-      console.log("Release Year: " + JSON.parse(body).Year);
-      console.log("IMDB Rating: " + JSON.parse(body).Ratings[0]["Value"]);
-      console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1]["Value"]);
-      console.log("It was produced in: " + JSON.parse(body).Country);
-      console.log("The dialogue is in " + JSON.parse(body).Language);
+
+
+        movieResult.title = JSON.parse(body).Title,
+        movieResult.year = JSON.parse(body).Year,
+        movieResult.imdbRating = JSON.parse(body).Ratings[0]["Value"],
+        movieResult.rottenTomRating = JSON.parse(body).Ratings[1]["Value"],
+        movieResult.country = JSON.parse(body).Country,
+        movieResult.language = JSON.parse(body).Language,
+        movieResult.plot = JSON.parse(body).Plot,
+        movieResult.cast = JSON.parse(body).Actors;
+
+      console.log("Title: " + movieResult.title);
+      console.log("Release Year: " + movieResult.year);
+      console.log("IMDB Rating: " + movieResult.imdbRating);
+      console.log("Rotten Tomatoes Rating: " + movieResult.rottenTomRating);
+      console.log("It was produced in: " + movieResult.country);
+      console.log("The dialogue is in " + movieResult.language);
       console.log("==============================");
-      console.log("SPOILERS: The plot of the movie is: " + JSON.parse(body).Plot);
+      console.log("SPOILERS: The plot of the movie is: " + movieResult.plot);
       console.log("==============================");
-      console.log("The main cast is: " + JSON.parse(body).Actors);
+      console.log("The main cast is: " + movieResult.cast);
+
+      fs.appendFile("log.txt", "NEW COMMAND" + "\r\n" + "Movie Title: " + movieResult.title + ", Year: " + movieResult.year + ", IMDB Rating: " + movieResult.imdbRating + ", Rotten Tomatoes Rating: " + movieResult.rottenTomRating + ", Country of Origin: " + movieResult.country + ", Language(s): "+ movieResult.language + ", Plot Summary: " + movieResult.plot + ", Cast: " + movieResult.cast + "\r\n", function(err) {
+        if (err) {
+          return console.log(err);
+        }
+      });
     };
   });
+
+
+
 
 };
 
@@ -226,6 +250,21 @@ function simonSays(){
   });
 
 
+};
+
+function resetLog(){
+  //This is just to reset the log.txt if you are tired of it being full of gibberish
+
+  fs.writeFile("log.txt", "Liri Log: " + "\r\n", function(){
+    console.log("The Liri Log has been cleared.");
+  });
+};
+
+function readLog(){
+  fs.readFile("log.txt", 'utf8', function(err, data){
+    if (err) throw err;
+    console.log(data);
+  });
 };
 
 
