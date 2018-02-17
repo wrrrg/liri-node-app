@@ -19,10 +19,12 @@ var searchTerm = inputString[3];
 
 var commandsArray = ["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says"];
 
+var spacer = "-----------------";
+
 function runLiri(command){
   if(commandsArray.indexOf(command) < 0){
     console.log("Please use one of the four given commands!");
-  }
+  };
 
   if(command === commandsArray[0]) {
     myTweets();
@@ -44,19 +46,53 @@ function myTweets(){
       console.log(tweets);
     }
   });
-}
+};
 
-// function spotifyThis(){
+function spotifyThis(){
 //   //should take argument "node liri.js spotify-this-song 'song name'"
 //   // should return artist(s), song name, preview link of the song from spotify, and the album the song is from
 //   // if no song is provided, the default is 'The Sign' by Ace of Base
-//   var song = '';
-//
-  // if(!searchTerm){
-  //   song = "The Sign";
-  // } else {
-  //   song = searchTerm;
-  // };
+  var song = '';
+  var availMarket = 'US'
+
+  if(!searchTerm){
+    song = "The Sign Ace Of Base";
+  } else {
+    song = searchTerm;
+  };
+
+  spotify.search({ type: 'track', query: song, limit: 1, market: availMarket}, function(err, data) {
+  if (err) {
+    return console.log('Error occurred: ' + err);
+  };
+
+// This will give us all of our wanted data via rooting through the object returned to us (within objects, within arrays...spotify really buries the lead here.)
+  //
+
+  console.log("****** Here are your spotify results! *****");
+  console.log(spacer);
+  console.log("Name of the song: " + data.tracks["items"][0]["name"]);
+  console.log(spacer);
+  console.log("You can find this song on the album: " + data.tracks["items"][0]["album"]["name"]);
+  console.log(spacer);
+  console.log("This song is by: " + data.tracks["items"][0]["album"]["artists"][0]["name"]);
+  console.log(spacer);
+
+
+  var preview = data.tracks["items"][0]["preview_url"];
+  if(!preview){
+    console.log("Unfortunately, there is no song preview available in your market.");
+  } else {
+    console.log("Here's a preview of the song: " + preview);
+  };
+
+  // I can't seem to get a preview URL to load. They all return null - google says that it needs a market to offer a previewURL and I'm not sure how to add one using this api.
+
+  // console.log(data);
+
+
+});
+};
 
 
 // }
