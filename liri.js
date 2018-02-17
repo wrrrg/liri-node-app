@@ -17,13 +17,13 @@ var inputString = process.argv
 var command = inputString[2];
 var searchTerm = inputString[3];
 
-var commandsArray = ["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says", "reset-log", "read-log"];
+var commandsArray = ["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says", "reset-log", "read-log", "help"];
 
 var spacer = "-----------------";
 
 function runLiri(command){
   if(commandsArray.indexOf(command) < 0){
-    console.log("Please use one of the four given commands!");
+    console.log("Please use one of the six given commands! Type 'node liri.js help' for more information.");
     fs.appendFile("log.txt", "NEW COMMAND" + "\r\n" + "User failed to enter a valid command, ", function(err) {
       if (err) {
         return console.log(err);
@@ -43,6 +43,8 @@ function runLiri(command){
     resetLog();
   } else if (command === commandsArray[5]){
     readLog();
+  } else if (command === commandsArray[6]){
+    readHelp();
   }
 };
 
@@ -262,6 +264,13 @@ function resetLog(){
 
 function readLog(){
   fs.readFile("log.txt", 'utf8', function(err, data){
+    if (err) throw err;
+    console.log(data);
+  });
+};
+
+function readHelp(){
+  fs.readFile("help.txt", 'utf8', function(err, data){
     if (err) throw err;
     console.log(data);
   });
