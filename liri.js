@@ -41,10 +41,27 @@ function myTweets(){
   // call should look like "node liri.js my-tweets"
   //recall the last 20 tweets and when they were posted in the terminal
 
-  client.get('favorites/list', function(error, tweets, response) {
+  client.get('statuses/user_timeline', {count: 20}, function(error, tweets, response) {
+    if (error){
+      console.log(error);
+    };
+    // If we don't get an error, loop through the tweets
     if (!error) {
-      console.log(tweets);
-    }
+      console.log(spacer)
+      console.log("Your last 20 tweets: ");
+      for (var i = 0; i < 20; i++) {
+        var name = tweets[i]["user"]["name"];
+        var time = tweets[i]["created_at"];
+        var content = tweets[i]["text"];
+
+        console.log(content);
+        console.log("(" + name + ", " + time + ")");
+        console.log(spacer);
+
+
+      };
+    };
+
   });
 };
 
